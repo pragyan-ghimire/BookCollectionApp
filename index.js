@@ -14,7 +14,7 @@ const db = new pg.Client({
 });
 db.connect();
 
-app.use(express.static("public"));
+app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended:true}));
 
 
@@ -35,7 +35,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 //     }
 // ]
 
-async function getBook() {
+async function getBooks() {
     const result = await db.query("SELECT * FROM book");
     let books = [];
     result.rows.forEach(book => {
@@ -44,22 +44,44 @@ async function getBook() {
     return books;
 }
 
+async function getBook(book_id){
+    const result = await db.query("SELECT * FROM book WHERE id = $1",[book_id]);
+    const book = result.rows[0];
+    return book;
+    // console.log(result);
+}
+
 app.get("/",async (req,res)=>{
-    const books = await getBook();
+    const books = await getBooks();
     res.render("index.ejs",{
         books: books
     });
-})
+});
 app.get("/add",(req,res)=>{
-    res.render("add.ejs")
-})
+    res.render("add.ejs",{
+        heading: "Add To Collection",
+        text: "Post",
+        book: null
+    });
+});
 app.post("/post",async (req,res)=>{
     const title = req.body.title;
     const rating = req.body.rating;
     const description = req.body.description;
     await db.query("INSERT INTO book (book_name, rating, description) VALUES ($1,$2,$3)",[title, rating, description]);
     res.redirect("/");
-})
+});
+app.get("/edit/:id",async (req,res)=>{
+    const book_id = req.params.id;
+    const book = await getBook(book_id);
+    // console.log(book_id);
+    // console.log(book);
+    res.render("add.ejs",{
+        heading: "Edit Book Detail",
+        book: book,
+        text: "Update"
+    });
+});
 app.listen(port,()=>{
     console.log(`Server is running on port: ${port}`);
 });

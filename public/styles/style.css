@@ -105,7 +105,7 @@ p,label{
 }
 
 /* start add page */
-#add-form{
+.add-form{
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -123,7 +123,7 @@ p,label{
     padding: 10px 16px;
     cursor: pointer;
 }
-#add-form input, textarea{
+.add-form input, textarea{
     width: 80%;
     padding: 10px;
     border-radius: 8px;
