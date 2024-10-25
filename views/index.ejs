@@ -21,7 +21,7 @@
           <a href="/add" class="add-btn">Add</a>
           <div class="orderby">
             <label>Order by:</label>
-            <Select id="order"> 
+            <Select id="order">
               <option value="date" selected>Date</option>
               <option value="alphabetical">Alphabetical</option>
               <option value="rating">Rating</option>
@@ -29,23 +29,31 @@
           </div>
         </div>
       </div>
-      <hr>
+      <hr />
 
       <!-- starting of book card -->
-       <div class="book-card">
-        <p class="book-title">
-          The Power of Subconscious Mind
-        </p>
-        <img src="assets/book-cover.png" alt="book cover img" class="book-cover-img">
-        <p class="rating">Rating: 9/10</p>
-        <p class="date">Date: 2024-10-23</p>
-        <p class="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. 
+      <%
+      if (locals.books) { books.forEach(book => { const localDate = new Date(book.date);
+        const date = localDate.toLocaleDateString('en-CA');%>
+      <div class="book-card">
+        <p class="book-title"><%= book.book_name %></p>
+        <img
+          src="assets/book-cover.png"
+          alt="book cover img"
+          class="book-cover-img"
+        />
+        <p class="rating">Rating: <%= book.rating %>/10</p>
+        <p class="date">Date: <%= date %></p>
+        <p class="description">
+          <%= book.description %>
         </p>
         <div class="card-btns">
-          <a href="/edit" class="edit-btn">Edit</a>
-          <a href="/delete" class="delete-btn">Delete</a>
+          <a href="/edit/:<%= book.id %>" class="edit-btn">Edit</a>
+          <a href="/delete/:<%= book.id %>" class="delete-btn">Delete</a>
         </div>
-       </div>
+      </div>
+      <% }); } %>
     </div>
     <%- include('partials/footer.ejs') %>
-
+  </body>
+</html>
