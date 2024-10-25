@@ -116,6 +116,12 @@ p,label{
     background-color: var(--btn-bg-color1);
     text-align: center;
     align-self: flex-end;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 8px;
+    padding: 10px 16px;
+    cursor: pointer;
 }
 #add-form input, textarea{
     width: 80%;

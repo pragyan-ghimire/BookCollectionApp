@@ -21,22 +21,17 @@
         <form id="add-form" action="/post" method="post">
             <div class="form-element">
                 <label for="title" id="title">Title:</label>
-                <input type="text" class="add-title" placeholder="Atomic habits By James Clear" required>
+                <input type="text" class="add-title" name="title" placeholder="Atomic habits By James Clear" required>
             </div>
             <div class="form-element">
                 <label for="rating" id="rating">Rating:</label>
-                <input type="text" class="add-title" placeholder="9" required>
+                <input type="number" class="add-title" name="rating" placeholder="( __ out of 10?)" required>
             </div>
             <div class="form-element">
                 <label for="description" id="description">Description:</label>
                 <textarea  class="add-description" placeholder="Description about above book you have idea about. " name="description" required></textarea>
             </div>
-            <a href="#" onclick="submit()" class="submit-btn">Post</a>
+            <button type="submit" class="submit-btn">Post</button>
         </form>
-        <script>
-            function submit(){
-                document.getElementById("add-form");
-            }
-        </script>
     </div>
 <%- include('partials/footer.ejs') %>
