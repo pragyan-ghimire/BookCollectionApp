@@ -1,0 +1,140 @@
+:root{
+    --container-bg-color: #FAF9F6;
+    --book-card-bg-color: #F5F4F2;
+    --descp-bg-color: #EAEAEA;
+    --input-bg-color: #F4F1F1;
+    --btn-bg-color1: #4FBD74;
+    --btn-bg-color2: #FA708C;
+    --book-title-font-size: 20px;
+    --normal-font-size: 16px;
+}
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: "Poppins", serif;
+}
+a{
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 8px;
+    padding: 10px 16px;
+}
+p,label{
+    font-size: 16px;
+}
+
+.container{
+    background-color: var(--container-bg-color);
+    margin-top: 72px;  
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom: 72px;
+    width: 936px;
+    height: auto;
+    border-radius: 12px;
+    padding-bottom: 32px;
+}
+.top-header{
+    padding: 32px 70px 32px 70px;
+}
+.actions{
+    margin-top: 32px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 32px;
+    align-items: center;
+}
+.add-btn{
+    background-color: var(--btn-bg-color1);
+}
+.orderby{
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+#order{
+    width: 169px;
+    background-color: var(--input-bg-color);
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: none;
+}
+
+/* start of book card */
+.book-card{
+    margin: 32px auto 0 auto;
+    width: 796px;
+    background-color: var(--book-card-bg-color);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding:32px 0;
+    text-align: center;
+}
+.book-title{
+    font-weight: bold;
+    font-size: var(--book-title-font-size);
+}
+.book-cover-img{
+    width: 250px;
+    height: 161px;
+    object-fit: contain;
+    margin: 0 auto;
+}
+.description{
+    width: 664px;
+    height: 160px;
+    margin: 0 auto;
+    background-color: var(--descp-bg-color);
+    border-radius: 8px;
+    text-align: justify;
+    padding: 16px;
+}
+.card-btns{
+    text-align: end;
+    margin-right: 66px;
+    margin-top: 10px;
+}
+.edit-btn,.delete-btn{
+    background-color: var(--btn-bg-color2);
+}
+
+/* start add page */
+#add-form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 772px;
+    margin: 32px auto 0 auto;
+}
+.submit-btn{
+    background-color: var(--btn-bg-color1);
+    text-align: center;
+    align-self: flex-end;
+}
+#add-form input, textarea{
+    width: 80%;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background-color: var(--input-bg-color);
+}
+textarea{
+    height: 144px;
+}
+.form-element{
+    display: flex;
+    justify-content: space-between;
+}
+
+footer{
+    text-align: center;
+    color: rgb(103, 100, 100);
+    padding: 16px;
+    background-color: #cdcdcd1e;
+}

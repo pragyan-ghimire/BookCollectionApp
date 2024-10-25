@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Collection App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles/style.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="top-header">
+        <h2 class="title">Book Collection</h2>
+        <div class="actions">
+          <a href="/add" class="add-btn">Add</a>
+          <div class="orderby">
+            <label>Order by:</label>
+            <Select id="order"> 
+              <option value="date" selected>Date</option>
+              <option value="alphabetical">Alphabetical</option>
+              <option value="rating">Rating</option>
+            </Select>
+          </div>
+        </div>
+      </div>
+      <hr>
+
+      <!-- starting of book card -->
+       <div class="book-card">
+        <p class="book-title">
+          The Power of Subconscious Mind
+        </p>
+        <img src="assets/book-cover.png" alt="book cover img" class="book-cover-img">
+        <p class="rating">Rating: 9/10</p>
+        <p class="date">Date: 2024-10-23</p>
+        <p class="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. 
+        </p>
+        <div class="card-btns">
+          <a href="/edit" class="edit-btn">Edit</a>
+          <a href="/delete" class="delete-btn">Delete</a>
+        </div>
+       </div>
+    </div>
+    <%- include('partials/footer.ejs') %>
+
