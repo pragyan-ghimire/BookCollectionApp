@@ -82,6 +82,17 @@ app.get("/edit/:id",async (req,res)=>{
         text: "Update"
     });
 });
+app.post("/update/:id",async (req,res)=>{
+    const book_id = req.params.id;
+    const book = await getBook(book_id);
+    const newDetail = {
+        book_name : req.body.title || book.book_name,
+        rating: req.body.rating || book.rating,
+        description: req.body.description || book.description
+    };
+    await db.query("UPDATE book SET book_name = $1, rating = $2, description = $3 WHERE id = $4",[newDetail.book_name,newDetail.rating, newDetail.description, book_id]);
+    res.redirect("/");
+})
 app.listen(port,()=>{
     console.log(`Server is running on port: ${port}`);
 });

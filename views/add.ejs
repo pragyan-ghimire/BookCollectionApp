@@ -19,7 +19,7 @@
         </div>
         <hr>
         <% if (locals.book) { %>
-            <form class="add-form" action="/update" method="post">
+            <form class="add-form" action="/update/<%= book.id %>" method="post">
             <div class="form-element">
                 <label for="title" >Title:</label>
                 <input type="text" class="add-title" name="title" placeholder="Atomic habits By James Clear" value="<%= book.book_name %>" required>
