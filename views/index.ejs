@@ -49,11 +49,16 @@
         </p>
         <div class="card-btns">
           <a href="/edit/<%= book.id %>" class="edit-btn">Edit</a>
-          <a href="/delete/<%= book.id %>" class="delete-btn">Delete</a>
+          <a href="/delete/<%= book.id %>" class="delete-btn" onclick="return confirmDelete()">Delete</a>
         </div>
       </div>
       <% }); } %>
     </div>
     <%- include('partials/footer.ejs') %>
+    <script>
+      function confirmDelete() {
+        return confirm("Are you sure you want to delete this book?");
+    }
+  </script>
   </body>
 </html>
