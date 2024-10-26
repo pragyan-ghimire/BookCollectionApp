@@ -1,6 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import pg from "pg";
+import axios from "axios";
 
 const app = express();
 const port = 3000;
@@ -17,23 +18,7 @@ db.connect();
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended:true}));
 
-
-// let books = [
-//     {
-//         id: 1,
-//         book_name: "The Power Of Subconcious Mind",
-//         rating: 9,
-//         date: "2023-10-09",
-//         description: "The Power Of Your Subconscious Mind is a spiritual self-help classic, which teaches you how to use visualization and other suggestion techniques to adapt your unconscious behavior in positive ways." 
-//     },
-//     {
-//         id:2,
-//         book_name: "Atomic Habits",
-//         rating: 9,
-//         date:"2024-10-20",
-//         description:"\"Atomic Habits\" by James Clear emphasizes the power of small, incremental changes and the importance of building good habits and breaking bad ones through a systematic approach, focusing on identity, environment, and systems rather than goals."
-//     }
-// ]
+const baseApiUrl = "https://openlibrary.org/";
 
 async function getBooks() {
     const result = await db.query("SELECT * FROM book");
@@ -49,6 +34,13 @@ async function getBook(book_id){
     const book = result.rows[0];
     return book;
     // console.log(result);
+}
+
+async function getCidValue(title) {
+    const response = await axios.get(`${baseApiUrl}search.json?title=${encodeURIComponent(title)}`);
+    const cidVal = response.data.docs[0]?.cover_i; // e.g., "/works/OL17930368W"
+    console.log(cidVal);
+    return cidVal;
 }
 
 app.get("/",async (req,res)=>{
@@ -68,7 +60,9 @@ app.post("/post",async (req,res)=>{
     const title = req.body.title;
     const rating = req.body.rating;
     const description = req.body.description;
-    await db.query("INSERT INTO book (book_name, rating, description) VALUES ($1,$2,$3)",[title, rating, description]);
+    const cidVal = await getCidValue(title);
+    await db.query("INSERT INTO book (book_name, rating, description, key) VALUES ($1,$2,$3,$4)",[title, rating, description,cidVal]);
+    
     res.redirect("/");
 });
 app.get("/edit/:id",async (req,res)=>{
