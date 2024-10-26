@@ -21,11 +21,24 @@ app.use(bodyParser.urlencoded({extended:true}));
 const baseApiUrl = "https://openlibrary.org/";
 
 async function getBooks() {
-    const result = await db.query("SELECT * FROM book");
+    const result = await db.query("SELECT * FROM book ORDER BY date DESC");
     let books = [];
     result.rows.forEach(book => {
         books.push(book);
     });
+    return books;
+}
+async function getBooksByOrder(orderby) {
+    let result ;
+    if(orderby == "book_name")
+        result = await db.query("SELECT * FROM book ORDER BY book_name ASC ");
+    else
+        result = await db.query(`SELECT * FROM book ORDER BY ${orderby} DESC `);
+    let books = [];
+    result.rows.forEach(book => {
+        books.push(book);
+    });
+    console.log(books);
     return books;
 }
 
@@ -91,7 +104,16 @@ app.get("/delete/:id",async (req,res)=>{
     const book_id = req.params.id;
     await db.query("DELETE FROM book WHERE id = $1",[book_id]);
     res.redirect("/");
-})
+});
+app.post("/orderby",async (req,res)=>{
+    const orderby = req.body.order || date;
+    console.log(orderby);
+    const books = await getBooksByOrder(orderby);
+    res.render("index.ejs",{
+        books: books,
+        order: orderby
+    });
+});
 app.listen(port,()=>{
     console.log(`Server is running on port: ${port}`);
 });

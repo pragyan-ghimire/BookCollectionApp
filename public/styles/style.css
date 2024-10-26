@@ -139,10 +139,10 @@ textarea{
 }
 
 footer{
-    position: fixed;
+    position: relative;
     padding: 16px;
-    color: rgb(103, 100, 100);
-    background-color: #cdcdcd1e;
+    color: rgb(78, 75, 75);
+    background-color: #d1cfcf;
     text-align: center;
     bottom: 0;
     right: 0;

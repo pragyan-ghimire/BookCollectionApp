@@ -19,14 +19,22 @@
         <h2 class="title">Book Collection</h2>
         <div class="actions">
           <a href="/add" class="add-btn">Add</a>
-          <div class="orderby">
+          <form class="orderby" action="/orderby" method="POST">
             <label>Order by:</label>
-            <Select id="order">
-              <option value="date" selected>Date</option>
-              <option value="alphabetical">Alphabetical</option>
-              <option value="rating">Rating</option>
-            </Select>
-          </div>
+            <% if(locals.order) {%>
+              <select id="order" name="order" onchange="this.form.submit()">
+                <option value="date" <% if (order === "date") { %> selected <% } %>>Date</option>
+                <option value="book_name" <% if (order === "book_name") { %> selected <% } %>>Alphabetical</option>
+                <option value="rating" <% if (order === "rating") { %> selected <% } %>>Rating</option>
+              </select>
+            <% }else{ %>
+              <Select id="order" name="order" onchange="this.form.submit()">
+                <option value="date" selected>Date</option>
+                <option value="book_name">Alphabetical</option>
+                <option value="rating">Rating</option>
+              </Select>
+            <% } %>
+          </form>
         </div>
       </div>
       <hr />
