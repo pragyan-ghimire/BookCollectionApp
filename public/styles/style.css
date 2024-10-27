@@ -6,7 +6,6 @@
     --btn-bg-color1: #4FBD74;
     --btn-bg-color2: #FA708C;
     --book-title-font-size: 20px;
-    --normal-font-size: 16px;
 }
 *{
     padding: 0;
@@ -15,6 +14,10 @@
 }
 body{
     font-family: "Poppins", serif;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 100vh;
 }
 a{
     text-decoration: none;
@@ -139,12 +142,11 @@ textarea{
 }
 
 footer{
-    position: relative;
+    /* position: sticky; */
     padding: 16px;
     color: rgb(78, 75, 75);
-    background-color: #d1cfcf;
+    background-color: #dfdddd46;
     text-align: center;
-    bottom: 0;
-    right: 0;
-    left: 0;
+    width: 100%;
+    bottom: 0%;
 }
