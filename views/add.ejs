@@ -30,8 +30,9 @@
             </div>
             <div class="form-element">
                 <label for="description" >Description:</label>
-                <textarea  class="add-description" placeholder="Description about above book you have idea about. " name="description" required><%= book.description %></textarea>
+                <textarea  id="add-description" placeholder="Description about above book you have idea about. Max limit: 280 characters" name="description" oninput="characterCount()" maxlength="280" required><%= book.description %></textarea>
             </div>
+            <p id="char-count" style="align-self: flex-end;">0/280</p>
             <button type="submit" class="submit-btn"><%= text %></button>
         </form>
         <% } else { %>
@@ -46,10 +47,20 @@
                 </div>
                 <div class="form-element">
                     <label for="description" >Description:</label>
-                    <textarea  class="add-description" placeholder="Description about above book you have idea about. " name="description" required></textarea>
+                    <textarea  id="add-description" placeholder="Description about above book you have idea about. Max limit: 280 characters" name="description" oninput="characterCount()" maxlength="280" required></textarea>
                 </div>
+                <p id="char-count" style="align-self: flex-end;">0/280</p>
                 <button type="submit" class="submit-btn"><%= text %></button>
             </form>
         <% } %>
     </div>
+    <script>
+        function characterCount() {
+            const description = document.getElementById("add-description").value;
+            // console.log(description.length);
+            document.getElementById("char-count").textContent=`${description.length}/280`;
+        }
+        document.addEventListener("DOMContentLoaded", characterCount);
+        
+    </script>
 <%- include('partials/footer.ejs') %>
