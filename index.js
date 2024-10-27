@@ -57,7 +57,7 @@ async function getBook(book_id){
 //to get the cover id for book cover image using openlibray api
 async function getCidValue(title) {
     const response = await axios.get(`${baseApiUrl}search.json?title=${encodeURIComponent(title)}`);
-    const cidVal = response.data.docs[0]?.cover_i; // e.g., "/works/OL17930368W"
+    const cidVal = response.data.docs[0]?.cover_i;
     // console.log(cidVal);
     return cidVal;
 }
